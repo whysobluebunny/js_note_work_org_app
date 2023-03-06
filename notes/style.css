@@ -4,9 +4,43 @@
     box-sizing: border-box;
 }
 
+ul.navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li.navigation {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+li.navigation:last-child {
+    border-right: none;
+}
+
+li.navigation a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.navigation a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #04AA6D;
+}
+
 body {
     line-height: 1.5;
     font-weight: 300;
+    font-family: Lato, sans-serif;
     /*height: 100vh;*/
 }
 
@@ -17,7 +51,7 @@ textarea {
 .note {
     border: 2px solid #000000;
     padding: 0 0.5rem;
-    /*margin: 3rem auto 3rem 20px;*/
+    margin: 2px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
@@ -66,7 +100,7 @@ textarea {
 }
 
 #view-note {
-    height: 400px;
+    height: 100vh;
     resize: none;
 }
 
@@ -135,9 +169,14 @@ textarea {
     border: 2px solid;
 }
 
-.note-item .btn:hover {
+.delete-note-btn:hover {
     background: #ff6047;
     box-shadow: 0 0 8px 0 rgba(255, 96, 72, 0.33);
+}
+
+.add-btn:hover,.view-note-btn:hover {
+    background: #04AA6D;
+    box-shadow: 0 0 8px 0 rgba(4, 170, 109, 0.75);
 }
 
 @media (min-width: 992px) {

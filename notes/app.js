@@ -1,5 +1,6 @@
 const noteListDiv = document.querySelector(".note-list");
 let noteID = 1;
+eventListeners();
 
 function Note(id, title, content) {
     this.id = id;
@@ -17,16 +18,12 @@ function eventListeners() {
 
 }
 
-eventListeners();
-
-// get item from storage 
-
+// get item from storage
 function getDataFromStorage() {
     return localStorage.getItem("notes") ? JSON.parse(localStorage.getItem("notes")) : [];
 }
 
 // add a new note in the list
-
 function addNewNote() {
     const noteTitle = document.getElementById("note-title");
     const noteContent = document.getElementById("note-content");
@@ -50,14 +47,13 @@ function addNewNote() {
 
 
 //  input validation
-
 function validateInput(title, content) {
-    if (title.value !== "" && content.value !== "") {
+    if (title.value !== "" && content.value !== "")
         return true;
-    } else {
-        if (title.value === "") title.classList.add("warning");
-        if (content.value === "") content.classList.add("warning");
-    }
+    if (title.value === "")
+        title.classList.add("warning");
+    if (content.value === "")
+        content.classList.add("warning");
     setTimeout(() => {
         title.classList.remove("warning");
         content.classList.remove("warning");
@@ -85,7 +81,6 @@ function createNote(noteItem) {
 
 
 // display all the notes from the local storage
-
 function displayNotes() {
     let notes = getDataFromStorage();
     if (notes.length > 0) {
@@ -114,20 +109,16 @@ function deleteNote(e) {
     }
 }
 
+// view selected note
 function viewNote(e) {
     if (e.target.classList.contains("view-note-btn")) {
         const viewArea = document.getElementById("view-note");
         const viewTitle = document.getElementById("view-title");
-        // e.target.parentElement.remove();
         console.log("jopa")
         let divID = e.target.parentElement.dataset.id;
         let item = getDataFromStorage().find(x => x.id === parseInt(divID));
         viewArea.value = item.content;
         viewTitle.innerHTML = item.title;
-        // let newNotesList = notes.filter(item => {
-        //     return item.id !== parseInt(divID);
-        // });
-        // localStorage.setItem("notes", JSON.stringify(newNotesList));
     }
 }
 
