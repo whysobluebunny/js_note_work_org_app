@@ -2,12 +2,6 @@ const noteListDiv = document.querySelector(".note-list");
 let noteID = 1;
 eventListeners();
 
-function Note(id, title, content) {
-    this.id = id;
-    this.title = title;
-    this.content = content;
-}
-
 // Add eventListeners
 function eventListeners() {
     document.addEventListener("DOMContentLoaded", displayNotes);
@@ -15,29 +9,20 @@ function eventListeners() {
     noteListDiv.addEventListener("click", deleteNote);
     noteListDiv.addEventListener("click", viewNote);
     document.getElementById("delete-all-btn").addEventListener("click", deleteAllNotes);
-
-}
-
-// get item from storage
-function getDataFromStorage() {
-    return localStorage.getItem("notes") ? JSON.parse(localStorage.getItem("notes")) : [];
 }
 
 // add a new note in the list
 function addNewNote() {
     const noteTitle = document.getElementById("note-title");
     const noteContent = document.getElementById("note-content");
-
     if (validateInput(noteTitle, noteContent)) {
-        let notes = getDataFromStorage();
-
-        let noteItem = new Note(noteID, noteTitle.value, noteContent.value);
+        let notes = getDataFromStorage("notes");
+        let noteItem = new Item(noteID, noteTitle.value, noteContent.value);
         noteID++;
         notes.push(noteItem);
         createNote(noteItem);
 
         // saving in the local storage
-
         localStorage.setItem("notes", JSON.stringify(notes));
         noteTitle.value = "";
         noteContent.value = "";
@@ -82,7 +67,7 @@ function createNote(noteItem) {
 
 // display all the notes from the local storage
 function displayNotes() {
-    let notes = getDataFromStorage();
+    let notes = getDataFromStorage("notes");
     if (notes.length > 0) {
         noteID = notes[notes.length - 1].id;
         noteID++;
@@ -98,10 +83,9 @@ function displayNotes() {
 // delete a note 
 function deleteNote(e) {
     if (e.target.classList.contains("delete-note-btn")) {
-
         e.target.parentElement.remove();
         let divID = e.target.parentElement.dataset.id;
-        let notes = getDataFromStorage();
+        let notes = getDataFromStorage("notes");
         let newNotesList = notes.filter(item => {
             return item.id !== parseInt(divID);
         });
@@ -114,9 +98,8 @@ function viewNote(e) {
     if (e.target.classList.contains("view-note-btn")) {
         const viewArea = document.getElementById("view-note");
         const viewTitle = document.getElementById("view-title");
-        console.log("jopa")
         let divID = e.target.parentElement.dataset.id;
-        let item = getDataFromStorage().find(x => x.id === parseInt(divID));
+        let item = getDataFromStorage("notes").find(x => x.id === parseInt(divID));
         viewArea.value = item.content;
         viewTitle.innerHTML = item.title;
     }

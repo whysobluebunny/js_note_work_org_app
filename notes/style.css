@@ -2,6 +2,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: Lato, sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 ul.navigation {
@@ -39,7 +44,6 @@ li.navigation a:hover:not(.active) {
 
 body {
     line-height: 1.5;
-    font-weight: 300;
     font-family: Lato, sans-serif;
     /*height: 100vh;*/
 }
@@ -134,7 +138,6 @@ textarea {
 .note-list {
     margin: 2rem 0;
     background: rgba(120, 120, 120, 0.66);
-    /*background-image: linear-gradient(#22c1c3, #fdbb2d);*/
     padding: 2rem;
     border-radius: 5px;
 }
