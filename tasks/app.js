@@ -7,11 +7,6 @@ var addButton = document.getElementsByTagName("button")[0];//first button
 var incompletedTasksHolder = document.getElementById("incomplete-tasks"); //incomplete-tasks
 var completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
 
-function addEventListeners() {
-    document.addEventListener("DOMContentLoaded", displayTasks);
-    addButton.addEventListener("click", addTask);
-}
-
 function createNewTaskElement(taskItem) {
     var listItem = document.createElement("li");
     var checkBox = document.createElement("input");
@@ -138,4 +133,9 @@ function changeTaskStatus(checkboxElem) {
         completedTasksHolder.appendChild(listItem);
     }
     localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function addEventListeners() {
+    document.addEventListener("DOMContentLoaded", displayTasks);
+    document.getElementsByTagName("button")[0].addEventListener("click", addTask);
 }

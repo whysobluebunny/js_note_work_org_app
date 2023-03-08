@@ -9,6 +9,8 @@ function eventListeners() {
     noteListDiv.addEventListener("click", deleteNote);
     noteListDiv.addEventListener("click", viewNote);
     document.getElementById("delete-all-btn").addEventListener("click", deleteAllNotes);
+    document.getElementById("btn-save").addEventListener("click", saveChangesNote);
+    document.getElementById("btn-clear").addEventListener("click", clearNoteField);
 }
 
 // add a new note in the list
@@ -61,7 +63,7 @@ function createNote(noteItem) {
         View
         </buttton>
   `;
-    noteListDiv.appendChild(div);
+    noteListDiv.insertBefore(div, noteListDiv.firstChild);
 }
 
 
@@ -99,6 +101,7 @@ function viewNote(e) {
         const viewArea = document.getElementById("view-note");
         const viewTitle = document.getElementById("view-title");
         let divID = e.target.parentElement.dataset.id;
+        viewTitle.setAttribute("data-id", divID);
         let item = getDataFromStorage("notes").find(x => x.id === parseInt(divID));
         viewArea.value = item.content;
         viewTitle.innerHTML = item.title;
@@ -115,4 +118,15 @@ function deleteAllNotes() {
         });
     }
     noteID = 1 //resetting noteID to 1
+}
+
+function clearNoteField(){
+    document.getElementById("view-title").innerHTML = "View note";
+    document.getElementById("view-note").value = "";
+}
+
+function saveChangesNote(){
+    let divID = document.getElementById("view-title").dataset.id;
+    console.log("Saving changes to id " + divID);
+    // todo
 }

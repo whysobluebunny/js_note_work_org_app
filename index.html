@@ -14,7 +14,6 @@
 <script defer src="notes/app.js"></script>
 <script defer src="utils/general.js"></script>
 <div>
-    <h1 margin="10px">Note section</h1>
     <div class="note">
         <div class="note-add">
             <h2>Add A New Note</h2>
@@ -30,19 +29,19 @@
                 </div>
             </div>
             <h2>Your notes</h2>
-            <div class="note-list">
+            <div>
+                <div class="note-list"></div>
+                <button type="button" class="btn" id="delete-all-btn">
+                    Delete All
+                </button>
             </div>
-
-            <button type="button" class="btn" id="delete-all-btn">
-                <span><i class="fas fa-trash"></i></span>
-                Delete All
-            </button>
         </div>
         <div class="note-view">
-            <h2>View note</h2>
+            <h2 id="view-title">View note</h2>
             <div class="note-wrapper">
-                <h1 id="view-title"></h1>
                 <textarea id="view-note" class="note-content" readonly rows="5"></textarea>
+                <button id="btn-save" class="btn add-btn">Save</button>
+                <button id="btn-clear" class="btn delete-note-btn">Clear</button>
             </div>
         </div>
     </div>
