@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>PlanYourself</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="notes/style.css">
+    <script defer src="notes/app.js"></script>
+    <script defer src="utils/general.js"></script>
+</head>
 <header>
     <ul class="navigation">
         <li class="navigation"><a class="active" href="index.html">Notes</a></li>
         <li class="navigation"><a href="tasks.html">Tasks</a></li>
-        <li class="navigation"><a href="#contact">Spents</a></li>
         <li class="navigation"><a href="#weather">Weather</a></li>
+        <li class="navigation"><a id="btn-download">Download Json</a></li>
+        <li class="navigation"><a id="btn-upload">Upload Json</a></li>
         <li class="navigation" style="float:right"><a href="#about">About</a></li>
     </ul>
 </header>
 <body>
-<link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="notes/style.css">
-<script defer src="notes/app.js"></script>
-<script defer src="utils/general.js"></script>
 <div>
     <div class="note">
         <div class="note-add">
             <h2>Add A New Note</h2>
             <div class="note-input">
-                <div class="note-wrapper">
+                <div class="note-wrapper ">
                     <input type="text" id="note-title" placeholder="Title of your note">
                     <textarea id="note-content" class="note-content" placeholder="Write your note here...."
                               rows="5"></textarea>
                     <button id="add-note-btn" class="btn add-btn" type="button">
-                        <span><i class="fas fa-plus"></i></span>
                         Add Note
                     </button>
                 </div>
             </div>
             <h2>Your notes</h2>
             <div>
-                <div class="note-list"></div>
+                <div id="note-list" class="note-list"></div>
                 <button type="button" class="btn" id="delete-all-btn">
                     Delete All
                 </button>
@@ -39,7 +43,7 @@
         <div class="note-view">
             <h2 id="view-title">View note</h2>
             <div class="note-wrapper">
-                <textarea id="view-note" class="note-content" readonly rows="5"></textarea>
+                <textarea id="view-note" class="note-content"></textarea>
                 <button id="btn-save" class="btn add-btn">Save</button>
                 <button id="btn-clear" class="btn delete-note-btn">Clear</button>
             </div>

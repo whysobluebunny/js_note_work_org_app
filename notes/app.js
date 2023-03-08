@@ -11,6 +11,8 @@ function eventListeners() {
     document.getElementById("delete-all-btn").addEventListener("click", deleteAllNotes);
     document.getElementById("btn-save").addEventListener("click", saveChangesNote);
     document.getElementById("btn-clear").addEventListener("click", clearNoteField);
+    document.getElementById("btn-download").addEventListener("click", downloadFileNotes);
+    document.getElementById("btn-upload").addEventListener("click", uploadJson);
 }
 
 // add a new note in the list
@@ -69,7 +71,13 @@ function createNote(noteItem) {
 
 // display all the notes from the local storage
 function displayNotes() {
+    console.log("started notes refresh")
     let notes = getDataFromStorage("notes");
+    if (!notes) {
+        console.log("no elements found. clearing...")
+        document.getElementById("note-list").innerHTML = "";
+        return;
+    }
     if (notes.length > 0) {
         noteID = notes[notes.length - 1].id;
         noteID++;
@@ -120,13 +128,21 @@ function deleteAllNotes() {
     noteID = 1 //resetting noteID to 1
 }
 
-function clearNoteField(){
+function clearNoteField() {
     document.getElementById("view-title").innerHTML = "View note";
     document.getElementById("view-note").value = "";
 }
 
-function saveChangesNote(){
+function saveChangesNote() {
     let divID = document.getElementById("view-title").dataset.id;
     console.log("Saving changes to id " + divID);
     // todo
+}
+
+function downloadFileNotes() {
+    downloadFile("notes", "notes.json");
+}
+
+function uploadJson() {
+    uploadProjectData("notes", displayNotes);
 }

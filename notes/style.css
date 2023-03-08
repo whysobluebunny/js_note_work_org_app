@@ -69,9 +69,16 @@ textarea {
     /*background: #d0d0d0;*/
 }
 
+textarea {
+    width: 100%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
 .note-add {
     padding: 0 0.5rem;
-    margin: 3rem auto 3rem 20px;
+    margin: 3rem 0 3rem 20px;
     /*background: #d0d0d0;*/
 }
 
@@ -85,6 +92,7 @@ textarea {
 }
 
 .note-wrapper {
+    /*float:left;*/
     margin: 0.7rem 0;
     padding: 0.5rem 0;
 }
@@ -92,6 +100,7 @@ textarea {
 #note-title,
 .note-content {
     width: 100%;
+    box-sizing: border-box;
     border: 2px solid rgba(0, 0, 0, 0.2);
     font-size: 1.05rem;
     padding: 0.55rem;

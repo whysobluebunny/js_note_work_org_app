@@ -1,11 +1,12 @@
-// const noteListDiv = document.querySelector(".note-list");
 let tasksId = 1;
 addEventListeners();
 
-var taskInput = document.getElementById("new-task"); // new-task
-var addButton = document.getElementsByTagName("button")[0];//first button
-var incompletedTasksHolder = document.getElementById("incomplete-tasks"); //incomplete-tasks
-var completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
+function addEventListeners() {
+    document.addEventListener("DOMContentLoaded", displayTasks);
+    document.getElementsByTagName("button")[0].addEventListener("click", addTask);
+    document.getElementById("btn-download").addEventListener("click", downloadFileTasks);
+    document.getElementById("btn-upload").addEventListener("click", uploadJson);
+}
 
 function createNewTaskElement(taskItem) {
     var listItem = document.createElement("li");
@@ -37,6 +38,12 @@ function createNewTaskElement(taskItem) {
 
 function displayTasks() {
     let tasks = getDataFromStorage("tasks");
+    if (!tasks) {
+        console.log("no elements found. clearing...")
+        document.getElementById("incomplete-tasks").innerHTML = "";
+        document.getElementById("completed-tasks").innerHTML = "";
+        return;
+    }
     if (tasks.length > 0) {
         tasksId = tasks[tasks.length - 1].id;
         tasksId++;
@@ -50,11 +57,11 @@ function displayTasks() {
 
 function addTask() {
     // console.log("Add Task...");
-    var taskItem = new Item(tasksId++, "", taskInput.value, false);
+    var taskItem = new Item(tasksId++, "", document.getElementById("new-task").value, false);
     var tasks = getDataFromStorage("tasks")
     tasks.push(taskItem)
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    taskInput.value = "";
+    document.getElementById("new-task").value = "";
 
     createTask(taskItem)
 }
@@ -62,14 +69,15 @@ function addTask() {
 function createTask(taskItem) {
     var listItem = createNewTaskElement(taskItem);
     if (taskItem.status)
-        completedTasksHolder.appendChild(listItem);
+        document.getElementById("completed-tasks").appendChild(listItem);
     else
-        incompletedTasksHolder.appendChild(listItem);
+        document.getElementById("incomplete-tasks").appendChild(listItem);
     bindTaskEvents(listItem, changeTaskStatus);
 }
 
 function editTask() {
     console.log("Edit Task...");
+    // todo save changes to localstorage
     var listItem = this.parentNode;
     var editInput = listItem.querySelector("input[type=text]");
     var label = listItem.querySelector("label");
@@ -128,14 +136,17 @@ function changeTaskStatus(checkboxElem) {
     });
     console.log("checkBoxChangeHandler tasks after: " + JSON.stringify(tasks));
     if (status) {
-        incompletedTasksHolder.appendChild(listItem);
+        document.getElementById("incomplete-tasks").appendChild(listItem);
     } else {
-        completedTasksHolder.appendChild(listItem);
+        document.getElementById("completed-tasks").appendChild(listItem);
     }
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function addEventListeners() {
-    document.addEventListener("DOMContentLoaded", displayTasks);
-    document.getElementsByTagName("button")[0].addEventListener("click", addTask);
+function downloadFileTasks() {
+    downloadFile("tasks", "tasks.json");
+}
+
+function uploadJson() {
+    uploadProjectData("tasks", displayTasks);
 }
