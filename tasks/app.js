@@ -58,12 +58,11 @@ function displayTasks() {
 function addTask() {
     // console.log("Add Task...");
     var taskItem = new Item(tasksId++, "", document.getElementById("new-task").value, false);
-    var tasks = getDataFromStorage("tasks")
-    tasks.push(taskItem)
+    var tasks = getDataFromStorage("tasks");
+    tasks.push(taskItem);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     document.getElementById("new-task").value = "";
-
-    createTask(taskItem)
+    createTask(taskItem);
 }
 
 function createTask(taskItem) {
@@ -77,7 +76,6 @@ function createTask(taskItem) {
 
 function editTask() {
     console.log("Edit Task...");
-    // todo save changes to localstorage
     var listItem = this.parentNode;
     var editInput = listItem.querySelector("input[type=text]");
     var label = listItem.querySelector("label");
@@ -85,6 +83,15 @@ function editTask() {
 
     if (containsClass) {
         label.innerText = editInput.value;
+        let taskId = listItem.dataset.id;
+        let tasks = getDataFromStorage("tasks");
+        tasks.forEach(function (item, i) {
+            if (item.id === parseInt(taskId)) {
+                console.log("Found element " + JSON.stringify(item) + "saving changes.")
+                item.content = editInput.value;
+            }
+        });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     } else {
         editInput.value = label.innerText;
     }
@@ -128,7 +135,7 @@ function changeTaskStatus(checkboxElem) {
     console.log(itemId);
     console.log("checkBoxChangeHandler tasks: " + JSON.stringify(tasks));
     tasks.forEach(function (item, i) {
-        console.log("Obaldet")
+        console.log("Changing item " + item.id + " status to opposite");
         if (item.id === itemId) {
             status = item.status;
             item.status = !item.status;

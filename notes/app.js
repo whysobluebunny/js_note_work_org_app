@@ -4,6 +4,7 @@ eventListeners();
 
 // Add eventListeners
 function eventListeners() {
+    document.getElementById("view-note").readOnly = true;
     document.addEventListener("DOMContentLoaded", displayNotes);
     document.getElementById("add-note-btn").addEventListener("click", addNewNote);
     noteListDiv.addEventListener("click", deleteNote);
@@ -113,6 +114,7 @@ function viewNote(e) {
         let item = getDataFromStorage("notes").find(x => x.id === parseInt(divID));
         viewArea.value = item.content;
         viewTitle.innerHTML = item.title;
+        document.getElementById("view-note").readOnly = false;
     }
 }
 
@@ -131,12 +133,28 @@ function deleteAllNotes() {
 function clearNoteField() {
     document.getElementById("view-title").innerHTML = "View note";
     document.getElementById("view-note").value = "";
+    document.getElementById("view-title")
+        .removeAttribute("data-id");
+    document.getElementById("view-note").readOnly = true;
 }
 
 function saveChangesNote() {
     let divID = document.getElementById("view-title").dataset.id;
     console.log("Saving changes to id " + divID);
-    // todo
+    if (!divID) {
+        console.log("nothing to save");
+        return;
+    }
+    let notes = getDataFromStorage("notes");
+    notes.forEach(function (item, i) {
+        if (item.id === parseInt(divID)) {
+            console.log("Found element " + JSON.stringify(item) + "saving changes.")
+            item.content = document.getElementById("view-note").value;
+        }
+    });
+    localStorage.setItem("notes", JSON.stringify(notes));
+    document.getElementById("note-list").innerHTML = "";
+    displayNotes();
 }
 
 function downloadFileNotes() {
