@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>PlanYourself</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="weather/style.css" type="text/css" media="screen" charset="utf-8">
+    <script defer src="weather/app.js"></script>
+    <script defer src="utils/general.js"></script>
+</head>
+<header class="header">
+    <ul class="navigation">
+        <li class="navigation"><a href="index.html">Notes</a></li>
+        <li class="navigation"><a href="tasks.html">Tasks</a></li>
+        <li class="navigation"><a class="active" href="weather.html">Weather</a></li>
+        <li class="navigation" style="float:right"><a href="about.html">About</a></li>
+    </ul>
+    <div class="row">
+        <div class="header__logo">
+           <svg class="logo svg-icon" viewBox="0 0 20 20">
+               <path fill="none" d="M10,6.656c-0.465,0-0.844,0.378-0.844,0.844c0,0.466,0.378,0.844,0.844,0.844s0.844-0.378,0.844-0.844C10.844,7.035,10.465,6.656,10,6.656 M10.422,1.614V1.172c0-0.233-0.188-0.422-0.422-0.422S9.578,0.939,9.578,1.172v0.442c-4.929,0.212-8.859,4.082-8.859,8.839c0,0.233,0.189,0.422,0.422,0.422h8.438v5.906c0,0.932-0.756,1.688-1.688,1.688c-0.932,0-1.688-0.756-1.688-1.688c0-0.233-0.188-0.422-0.422-0.422c-0.233,0-0.422,0.188-0.422,0.422c0,1.397,1.133,2.531,2.531,2.531c1.253,0,2.287-0.914,2.489-2.109h0.042v-6.328h8.438c0.233,0,0.422-0.189,0.422-0.422C19.281,5.696,15.351,1.826,10.422,1.614 M1.585,10.031C1.817,5.802,5.49,2.438,10,2.438c4.51,0,8.184,3.364,8.415,7.594H1.585zM4.094,7.5C3.627,7.5,3.25,7.878,3.25,8.344c0,0.465,0.377,0.843,0.844,0.843c0.465,0,0.844-0.378,0.844-0.843C4.938,7.878,4.559,7.5,4.094,7.5 M7.469,4.969c-0.465,0-0.844,0.378-0.844,0.844s0.378,0.844,0.844,0.844c0.466,0,0.844-0.378,0.844-0.844S7.935,4.969,7.469,4.969 M15.062,7.5c-0.466,0-0.844,0.378-0.844,0.844c0,0.465,0.378,0.843,0.844,0.843s0.844-0.378,0.844-0.843C15.906,7.878,15.528,7.5,15.062,7.5 M12.531,4.125c-0.466,0-0.844,0.378-0.844,0.844s0.378,0.844,0.844,0.844s0.844-0.378,0.844-0.844S12.997,4.125,12.531,4.125"></path>
+           </svg>
+        </div>
+        <p class="header__date">
+        </p>
+        <div class="header__search">
+            <a title="geolocate" href="#" class="header__geolocate">
+                <svg class="icon icon-target">
+                    <use xlink:href="#icon-target"></use>
+                </svg>
+            </a>
+            <form class="header__form">
+                <input type="search" placeholder="Type city name" class="header__search">
+                <button class="btn btn-primary" role="search">
+                    <svg class="icon icon-search">
+                        <use xlink:href="#icon-search"></use>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</header>
+<body>
+<main class="weather">
+    <h1 class="weather__message">Please enter the name of the city or click on the
+        <a title="geolocate" href="#" class="header__geolocate">
+            <svg class="icon icon-target">
+                <use xlink:href="#icon-target"></use>
+            </svg>
+        </a> to allow us to get your location
+    </h1>
+</main>
+
+<section class="forecast">
+    <div class="row">
+    </div>
+</section>
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol id="icon-search" viewBox="0 0 32 32">
+            <title>search</title>
+            <path d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.622-1.029-2.299-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.299l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"></path>
+        </symbol>
+        <symbol id="icon-target" class="svg-icon" viewBox="0 0 20 20">
+            <title>target</title>
+            <!--            <path d="M32 14h-3.154c-0.864-5.57-5.276-9.982-10.846-10.846v-3.154h-4v3.154c-5.57 0.864-9.982 5.276-10.846 10.846h-3.154v4h3.154c0.864 5.57 5.276 9.982 10.846 10.846v3.154h4v-3.154c5.57-0.864 9.982-5.276 10.846-10.846h3.154v-4zM24.776 14h-3.118c-0.603-1.705-1.953-3.056-3.658-3.658v-3.118c3.36 0.765 6.010 3.416 6.776 6.776zM16 18c-1.105 0-2-0.895-2-2s0.895-2 2-2c1.105 0 2 0.895 2 2s-0.895 2-2 2zM14 7.224v3.118c-1.705 0.603-3.056 1.953-3.658 3.658h-3.118c0.765-3.36 3.416-6.010 6.776-6.776zM7.224 18h3.118c0.603 1.705 1.953 3.056 3.658 3.658v3.118c-3.36-0.765-6.010-3.416-6.776-6.776zM18 24.776v-3.118c1.705-0.603 3.056-1.953 3.658-3.658h3.118c-0.765 3.36-3.416 6.010-6.776 6.776z"></path>-->
+            <path fill="none" d="M19.629,9.655c-0.021-0.589-0.088-1.165-0.21-1.723h-3.907V7.244h1.378V6.555h-2.756V5.866h2.067V5.177h-0.689V4.488h-1.378V3.799h0.689V3.11h-1.378V2.421h0.689V1.731V1.294C12.88,0.697,11.482,0.353,10,0.353c-5.212,0-9.446,4.135-9.629,9.302H19.629z M6.555,2.421c1.522,0,2.756,1.234,2.756,2.756S8.077,7.933,6.555,7.933S3.799,6.699,3.799,5.177S5.033,2.421,6.555,2.421z"></path>
+            <path fill="none" d="M12.067,18.958h-0.689v-0.689h2.067v-0.689h0.689V16.89h2.067v-0.689h0.689v-0.689h-1.378v-0.689h-2.067v-0.689h1.378v-0.689h2.756v-0.689h-1.378v-0.689h3.218c0.122-0.557,0.189-1.134,0.21-1.723H0.371c0.183,5.167,4.418,9.302,9.629,9.302c0.711,0,1.401-0.082,2.067-0.227V18.958z"></path>
+        </symbol>
+    </defs>
+</svg>
+</body>
+</html>
