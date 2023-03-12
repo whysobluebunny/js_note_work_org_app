@@ -127,7 +127,7 @@ function bindTaskEvents(taskListItem) {
     checkBox.onchange = changeTaskStatus;
 }
 
-function changeTaskStatus(checkboxElem) {
+function changeTaskStatus() {
     var listItem = this.parentNode;
     var tasks = getDataFromStorage("tasks");
     var itemId = parseInt(listItem.dataset.id);
